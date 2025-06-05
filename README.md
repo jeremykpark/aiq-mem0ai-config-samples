@@ -1,4 +1,4 @@
-# 🔌 Nvidia AgentIQ toolkit Mem0 Plugin Extended Integration Scripts
+# 🟩 Nvidia AgentIQ toolkit 🔌 Mem0 Plugin Extended Integration Scripts
 
 These are example scripts for Nvidia AgentIQ for configuring Mem0 with other sources than the cloud version. Included Local Ollama/Quadrant, Nvidia NGC or Nvidia Build.
 
