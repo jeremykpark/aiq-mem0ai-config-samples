@@ -50,7 +50,7 @@ async def mem0_memory_client(config: Mem0LocalMemoryClientConfig, builder: Build
             },
         },
         "llm": {
-            "provider": "ollama",
+            "provider": config.llm_provider,
             "config": {
                 "model": config.llm_model,
                 "temperature": config.llm_temperature,
@@ -59,7 +59,7 @@ async def mem0_memory_client(config: Mem0LocalMemoryClientConfig, builder: Build
             },
         },
         "embedder": {
-            "provider": "ollama",
+            "provider": config.llm_provider,
             "config": {
                 "model": config.embedder_model,
                 "ollama_base_url": config.embedder_base_url,

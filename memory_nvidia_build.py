@@ -23,14 +23,16 @@ class Mem0BuildNvidiaMemoryClientConfig(MemoryBaseConfig, name="mem0_build_nvidi
     vec_store_collection_name: str = "DefaultAIQCollection"
     vec_store_url: str = "http://localhost:19530"  # Default Milvus URL, change if needed
     vec_store_embedding_model_dims: int = 768  # Change this according to your local model's dimensions
-    llm_provider: str = "ollama"
-    llm_model: str = "command-r7b:latest"  # Change to your preferred model
+    llm_provider: str = "langchain"
+    llm_model: str = "nvidia/llama-3.1-nemotron-nano-4b-v1.1" # Choose a model from build.nvidia.com
     llm_temperature: float = 0.0
     llm_max_tokens: int = 2000
-    llm_base_url: str = "http://localhost:11434"  # Default Ollama URL, change if needed
-    embedder_provider: str = "ollama"
-    embedder_model: str = "snowflake-arctic-embed2:latest"
-    embedder_base_url: str = "http://localhost:11434"  # Default Ollama URL, change if needed
+    llm_base_url: str = "https://integrate.api.nvidia.com/v1"  # Default NVIDIA API URL, change if needed
+    llm_api_key: str # build.nvidia.com API KEY
+    embedder_provider: str = "langchain"
+    embedder_model: str = "snowflake/arctic-embed-l" # Choose a model from build.nvidia.com
+    embedder_base_url: str = "https://ai.api.nvidia.com/v1/retrieval/snowflake/arctic-embed-l"  # Default NVIDIA API URL, change if needed
+    embedder_api_key: str # build.nvidia.com API KEY
 
 
 @register_memory(config_type=Mem0BuildNvidiaMemoryClientConfig)
@@ -51,21 +53,21 @@ async def mem0_memory_client(config: Mem0BuildNvidiaMemoryClientConfig, builder:
             },
         },
         "llm": {
-            "provider": "langchain",
+            "provider": config.llm_provider,
             "config": {
-                # choose an llm model from build.nvidia.com
-                "model": "llama3.1:latest",
-                "temperature": 0,
-                "max_tokens": 2000,
-                "base_url": "https://integrate.api.nvidia.com/v1",  # Ensure this URL is correct
+                "model": config.llm_model,
+                "temperature": config.llm_temperature,
+                "max_tokens": config.llm_max_tokens,
+                "ollama_base_url": config.llm_base_url,
+                "api_key": config.llm_api_key,
             },
         },
         "embedder": {
-            "provider": "langchain",
+            "provider": config.llm_provider,
             "config": {
-                # choose an embedding model from build.nvidia.com
-                "model": "snowflake-arctic-embed2:latest",
-                "base_url": "https://integrate.api.nvidia.com/v1",
+                "model": config.embedder_model,
+                "ollama_base_url": config.embedder_base_url,
+                "api_key": config.embedder_api_key,
             },
         },
     }
