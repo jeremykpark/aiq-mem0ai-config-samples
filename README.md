@@ -4,8 +4,6 @@ These are example scripts for Nvidia AgentIQ for configuring Mem0 with other sou
 
 ## Important Files
 
-These files are ment to run in <aiq folder>/packages/aiqtoolkit_mem0ai/src/aiq/plugins/mem0ai
-
 * memory.py - the original version for connecting to mem0 cloud
 * mem0_editor.py - the original version
 * memory_local.py - new version for connecting to local resources like Quadrant, Nvidia NIMs and Ollama
@@ -16,15 +14,18 @@ Mem0 config field list are listed in Mem0_core_configuration_options.md
 
 ## Installation plan
 
-Once these files copied into your plugin folder, you'll have to reload to plugin. You can call these configuration by using the following commands:
+These files are ment to be copied into <aiq folder>/packages/aiqtoolkit_mem0ai/src/aiq/plugins/mem0ai  
+Best practice not to overwrite the original memory.py and mem0_editor.py incase of future aiq repo updates.  
 
-Go to the aiqtoolkit_mem0ai plugin main folder, and install like any workflow:
+Once these files copied into your plugin folder, you'll have to reload to plugin. You can call these configuration by using the following commands:  
 
-uv install -e . 
+Go to the aiqtoolkit_mem0ai plugin main folder, and install like any workflow:  
 
-To view if it is installed, use the command:
+uv install -e .   
 
-aiq info components -q "memory"
+To view if it is installed, use the command:  
+
+aiq info components -q "memory"  
 
 ## Workflow Config updates
 
