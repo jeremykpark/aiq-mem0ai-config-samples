@@ -18,7 +18,7 @@ Mem0 config field list are listed in Mem0_core_configuration_options.md
 
 Once these files copied into your plugin folder, you'll have to reload to plugin. You can call these configuration by using the following commands:
 
-Go to the plugin main folder, and install like any workflow:
+Go to the aiqtoolkit_mem0ai plugin main folder, and install like any workflow:
 
 uv install -e . 
 
@@ -26,7 +26,14 @@ To view if it is installed, use the command:
 
 aiq info components -q "memory"
 
-# How to use
+## Workflow Config updates
+
+Update your workflows config with the following options:
+
+
+
+## How to use in workflow
+
 
 
 
