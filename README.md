@@ -6,10 +6,14 @@ These are example scripts for Nvidia AgentIQ for configuring Mem0 with other sou
 
 These files are ment to run in <aiq folder>/packages/aiqtoolkit_mem0ai/src/aiq/plugins/mem0ai
 
-memory.py - the original version
-memory_local.py - new version for connecting to local resources like Quadrant and Ollama
-memory_nvidia_build.py - new version for connecting to build.nvidia.com
-memory_nvidia_ngc.py - new version for connecting to Nvidia NGC
+* memory.py - the original version
+* mem0_editor.py - the original version
+* memory_local.py - new version for connecting to local resources like Quadrant and Ollama
+* memory_nvidia_build.py - new version for connecting to build.nvidia.com
+* memory_nvidia_ngc.py - new version for connecting to Nvidia NGC
+* register.py - updated with additional files
+
+Mem0 config field list are listed in Mem0_core_configuration_options.md
 
 ## Installation plan
 
