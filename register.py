@@ -21,5 +21,4 @@
 
 from . import memory
 from . import memory_local
-from . import memory_nvidia_ngc
 from . import memory_nvidia_build
