@@ -21,13 +21,13 @@ Once these files copied into your plugin folder, you'll have to reload to plugin
 
 ## Links
 
-Nvidia AgentIQ Documentation - https://docs.nvidia.com/agentiq/latest/index.html
-Mem0 Documentation - https://docs.mem0.ai/overview
-Nvidia NGC - https://ngc.nvidia.com
-Nvidia Build - https://build.nvidia.com
-Quadrant - https://qdrant.tech
-Ollama - https://ollama.com
+Nvidia AgentIQ Documentation - https://docs.nvidia.com/agentiq/latest/index.html  
+Mem0 Documentation - https://docs.mem0.ai/overview  
+Nvidia NGC - https://ngc.nvidia.com  
+Nvidia Build - https://build.nvidia.com  
+Quadrant - https://qdrant.tech  
+Ollama - https://ollama.com  
 
 ## Contributors
 
-Created by Jeremy Kesten for public use with the Nvidia AgentIQ Toolkit
+Created by Jeremy Kesten in 2025 for public use with the Nvidia AgentIQ Toolkit
