@@ -27,3 +27,7 @@ Nvidia NGC - https://ngc.nvidia.com
 Nvidia Build - https://build.nvidia.com
 Quadrant - https://qdrant.tech
 Ollama - https://ollama.com
+
+## Contributors
+
+Created by Jeremy Kesten for public use with the Nvidia AgentIQ Toolkit
