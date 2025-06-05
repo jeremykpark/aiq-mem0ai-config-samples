@@ -18,3 +18,12 @@ Mem0 config field list are listed in Mem0_core_configuration_options.md
 ## Installation plan
 
 Once these files copied into your plugin folder, you'll have to reload to plugin. You can call these configuration by using the following commands:
+
+## Links
+
+Nvidia AgentIQ Documentation - https://docs.nvidia.com/agentiq/latest/index.html\n
+Mem0 Documentation - https://docs.mem0.ai/overview\n
+Nvidia NGC - https://ngc.nvidia.com\n
+Nvidia Build - https://build.nvidia.com\n
+Quadrant - https://qdrant.tech\n
+Ollama - https://ollama.com\n
