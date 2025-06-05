@@ -15,7 +15,7 @@
 
 ### LLM
 
-- **`provider`** – LLM provider (`openai`, `anthropic`, `ollama`, …)
+- **`provider`** – LLM provider (`openai`, `anthropic`, `ollama`, `langchain` …)
 - **`model`** – Model name or ID
 - **`temperature`** – Sampling temperature
 - **`api_key`** – API key

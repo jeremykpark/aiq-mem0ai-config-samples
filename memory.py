@@ -35,7 +35,7 @@ async def mem0_memory_client(config: Mem0MemoryClientConfig, builder: Builder):
     from aiq.plugins.mem0ai.mem0_editor import Mem0Editor
 
     mem0_api_key = os.environ.get("MEM0_API_KEY")
-p
+
     if mem0_api_key is None:
         raise RuntimeError("Mem0 API key is not set. Please specify it in the environment variable 'MEM0_API_KEY'.")
 

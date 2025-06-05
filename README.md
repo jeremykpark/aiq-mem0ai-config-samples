@@ -1,6 +1,6 @@
 # 🟩 Nvidia AgentIQ toolkit 🔌 Mem0 Plugin Extended Integration Scripts
 
-These are example scripts for Nvidia AgentIQ for configuring Mem0 with other sources than the cloud version. Included Local Ollama/Quadrant, Nvidia NGC or Nvidia Build.
+These are example scripts for Nvidia AgentIQ for configuring Mem0 with other sources than the cloud version. Two included additional plugins for local setup (for connecting to local Milvus, qdrant, NIMs or Ollama ) or for using build.nvidia.com models.
 
 ## Important Files
 
@@ -8,9 +8,8 @@ These files are ment to run in <aiq folder>/packages/aiqtoolkit_mem0ai/src/aiq/p
 
 * memory.py - the original version for connecting to mem0 cloud
 * mem0_editor.py - the original version
-* memory_local.py - new version for connecting to local resources like Quadrant and Ollama
+* memory_local.py - new version for connecting to local resources like Quadrant, Nvidia NIMs and Ollama
 * memory_nvidia_build.py - new version for connecting to build.nvidia.com
-* memory_nvidia_ngc.py - new version for connecting to Nvidia NGC
 * register.py - updated with additional files
 
 Mem0 config field list are listed in Mem0_core_configuration_options.md
@@ -18,6 +17,20 @@ Mem0 config field list are listed in Mem0_core_configuration_options.md
 ## Installation plan
 
 Once these files copied into your plugin folder, you'll have to reload to plugin. You can call these configuration by using the following commands:
+
+Go to the plugin main folder, and install like any workflow:
+
+uv install -e . 
+
+To view if it is installed, use the command:
+
+aiq info components -q "memory"
+
+# How to use
+
+
+
+More information on using memory in agentiq can be found here:
 
 ## Links
 
