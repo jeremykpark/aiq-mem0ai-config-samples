@@ -20,5 +20,6 @@
 # Import any providers which need to be automatically registered here
 
 from . import memory
-from . import memory_local
+from . import memory_local_nim
+from . import memory_local_ollama
 from . import memory_nvidia_build

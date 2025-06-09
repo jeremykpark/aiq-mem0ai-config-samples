@@ -18,40 +18,34 @@ from aiq.cli.register_workflow import register_memory
 from aiq.data_models.memory import MemoryBaseConfig
 
 
-class Mem0BuildNvidiaMemoryClientConfig(MemoryBaseConfig, name="mem0_memory_build_nvidia"):
+
+class Mem0LocalMemoryClientConfig(MemoryBaseConfig, name="mem0_memory_local_nim"):
     """
-    Mem0 Memory Client Configuration. Setup for use with NVIDIA's build.nvidia.com services.
+    Mem0 Memory Client Configuration. Setup for use with NIM instances.
     """
-    # Defaults are set to work with Milvus and build.nvidia.com via langchain, change them according to your local setup or override them in your workflow config file
+    # Defaults are set to work with Ollama and Milvus
+    # change them according to your local setup or override them in your workflow config file
     vec_store_provider: str = "milvus"  # Change to "qdrant" if you prefer that
     vec_store_collection_name: str = "DefaultAIQCollection"
     vec_store_url: str = "http://localhost:19530"  # Default Milvus URL, change if needed
     vec_store_embedding_model_dims: int = 1024  # Updated to match the actual embedding dimensions
     llm_provider: str = "langchain"
-    llm_model: str = "nvidia/llama-3.1-nemotron-nano-4b-v1.1" # Choose a model from build.nvidia.com
+    llm_model: str = "nvidia/llama-3.1-nemotron-nano-4b-v1.1"  # Change to your preferred model
+    llm_base_url: str = "http://localhost:11434"  # Default Ollama URL, change if needed
     llm_temperature: float = 0.0
     llm_max_tokens: int = 2000
-    llm_base_url: str = "https://integrate.api.nvidia.com/v1"  # Default NVIDIA API URL, change if needed
-    llm_api_key: str # build.nvidia.com API KEY
     embedder_provider: str = "langchain"
-    embedder_model: str = "snowflake/arctic-embed-l" # Choose a model from build.nvidia.com
-    embedder_base_url: str = "https://ai.api.nvidia.com/v1/retrieval/snowflake/arctic-embed-l"  # Default NVIDIA API URL, change if needed
-    embedder_api_key: str # build.nvidia.com API KEY
+    embedder_model: str = "nvidia/llama-3.2-nv-embedqa-1b-v2"
+    embedder_base_url: str = "http://localhost:11434"  # Default Ollama URL, change if needed
 
-
-@register_memory(config_type=Mem0BuildNvidiaMemoryClientConfig)
-async def mem0_memory_client(config: Mem0BuildNvidiaMemoryClientConfig, builder: Builder):
+@register_memory(config_type=Mem0LocalMemoryClientConfig)
+async def mem0_memory_client(config: Mem0LocalMemoryClientConfig, builder: Builder):
     # UPDATED: Import AsyncMemory for v2 API compatibility
     from mem0 import AsyncMemory
     from aiq.plugins.mem0ai.mem0_editor import Mem0Editor
     
-    # Check if API key is provided
-    api_key = config.llm_api_key or config.embedder_api_key
-    if not api_key:
-        raise ValueError("API key is required for NVIDIA build services")
-    
     # UPDATED: Create configuration dictionary for AsyncMemory
-    # This includes all the necessary configuration for the NVIDIA embedder, LLM, and vector store
+    # This includes all the necessary configuration for the local embedder, LLM, and vector store
     config_dict = {
         "vector_store": {
             "provider": config.vec_store_provider,
@@ -67,16 +61,16 @@ async def mem0_memory_client(config: Mem0BuildNvidiaMemoryClientConfig, builder:
                 "model": config.llm_model,
                 "temperature": config.llm_temperature,
                 "max_tokens": config.llm_max_tokens,
+                # For langchain provider, use the correct base_url parameter name
                 "base_url": config.llm_base_url,
-                "api_key": config.llm_api_key,
             },
         },
         "embedder": {
             "provider": config.embedder_provider,
             "config": {
                 "model": config.embedder_model,
+                # For langchain provider, use the correct base_url parameter name
                 "base_url": config.embedder_base_url,
-                "api_key": config.embedder_api_key,
             },
         },
     }

@@ -19,6 +19,9 @@ from aiq.data_models.memory import MemoryBaseConfig
 
 
 class Mem0MemoryClientConfig(MemoryBaseConfig, name="mem0_memory"):
+    """
+    Mem0 Memory Client Configuration. For use with the Mem0 Cloud API.
+    """
     host: str | None = None
     organization: str | None = None
     project: str | None = None

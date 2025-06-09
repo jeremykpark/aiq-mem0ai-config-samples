@@ -18,13 +18,18 @@ from aiq.cli.register_workflow import register_memory
 from aiq.data_models.memory import MemoryBaseConfig
 
 
-class Mem0LocalMemoryClientConfig(MemoryBaseConfig, name="mem0_memory_local"):
+class Mem0LocalMemoryClientConfig(MemoryBaseConfig, name="mem0_memory_local_ollama"):
+    """
+    Mem0 Memory Client Configuration. Setup for use with local Ollama instaces.
+    """
+    # Defaults are set to work with Ollama and Milvus
+    # change them according to your local setup or override them in your workflow config file
     vec_store_provider: str = "milvus"  # Change to "qdrant" if you prefer that
-    vec_store_collection_name: str = "DefaultAIQCollection"
+    vec_store_collection_name: str = "DefaultAIQCollectionNew"
     vec_store_url: str = "http://localhost:19530"  # Default Milvus URL, change if needed
-    vec_store_embedding_model_dims: int = 768  # Change this according to your local model's dimensions
+    vec_store_embedding_model_dims: int = 1024  # Updated to match the actual embedding dimensions
     llm_provider: str = "ollama"
-    llm_model: str = "command-r7b:latest"  # Change to your preferred model
+    llm_model: str = "aliafshar/gemma3-it-qat-tools:27b"  # Change to your preferred model
     llm_temperature: float = 0.0
     llm_max_tokens: int = 2000
     llm_base_url: str = "http://localhost:11434"  # Default Ollama URL, change if needed
@@ -32,15 +37,16 @@ class Mem0LocalMemoryClientConfig(MemoryBaseConfig, name="mem0_memory_local"):
     embedder_model: str = "snowflake-arctic-embed2:latest"
     embedder_base_url: str = "http://localhost:11434"  # Default Ollama URL, change if needed
 
+
 @register_memory(config_type=Mem0LocalMemoryClientConfig)
 async def mem0_memory_client(config: Mem0LocalMemoryClientConfig, builder: Builder):
-    import os
-
-    from mem0 import Memory
-
+    # UPDATED: Import AsyncMemory for v2 API compatibility
+    from mem0 import AsyncMemory
     from aiq.plugins.mem0ai.mem0_editor import Mem0Editor
-
-    config = {
+    
+    # UPDATED: Create configuration dictionary for AsyncMemory
+    # This includes all the necessary configuration for the local embedder, LLM, and vector store
+    config_dict = {
         "vector_store": {
             "provider": config.vec_store_provider,
             "config": {
@@ -59,7 +65,7 @@ async def mem0_memory_client(config: Mem0LocalMemoryClientConfig, builder: Build
             },
         },
         "embedder": {
-            "provider": config.llm_provider,
+            "provider": config.embedder_provider,
             "config": {
                 "model": config.embedder_model,
                 "ollama_base_url": config.embedder_base_url,
@@ -67,8 +73,10 @@ async def mem0_memory_client(config: Mem0LocalMemoryClientConfig, builder: Build
         },
     }
     
-    # Initialize Memory with the configuration
-    mem0_client = Memory.from_config(config)
+    # UPDATED: Initialize AsyncMemory with the configuration
+    # This is compatible with the v2 API and the updated mem0_editor.py
+    # Use from_config to create an AsyncMemory instance from a dictionary
+    mem0_client = await AsyncMemory.from_config(config_dict)
 
     memory_editor = Mem0Editor(mem0_client=mem0_client)
 

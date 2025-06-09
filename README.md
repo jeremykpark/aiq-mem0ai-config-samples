@@ -21,7 +21,7 @@ Once these files copied into your plugin folder, you'll have to reload to plugin
 
 Go to the aiqtoolkit_mem0ai plugin main folder, and install like any workflow:  
 
-uv install -e .   
+uv pip install -e .  
 
 To view if it is installed, use the command:  
 
