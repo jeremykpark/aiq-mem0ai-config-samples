@@ -1,6 +1,6 @@
 # 🟩 Nvidia AgentIQ toolkit 🔌 Mem0 Plugin Extended Integration Scripts
 
-These are example scripts for Nvidia AgentIQ for configuring Mem0 with local sources and has been updated for the V2 version of Mem0 with a new plugin integration. This will allow you to run a local Nvidia AgentIQ memory development config, so that your agent will remember your preferences based on your user_id.
+These are example scripts for Nvidia AgentIQ for configuring Mem0 with local sources and has been updated for the V2 version of Mem0 with a new plugin integration. This will allow you to locally utillize memory features in Nvidia AgentIQ, so that your agent will remember unique user preferences from chat interpretations, based on a user_id.
 
 This version was setup for Milvus vector store running locally, Mem0 installed locally, and several instances of ollama running locally for embedding and llm commands (need a tool calling model).
 
