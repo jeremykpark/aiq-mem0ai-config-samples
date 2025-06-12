@@ -14,9 +14,9 @@ general:
     _type: fastapi
 
 functions: 
-  event_reporting_agent_function:
-    _type: event_reporting_agent # Changed from event_reporting_agent_function
-    memory_name: saas_memory # Changed from memories
+  custom_agent_function:
+    _type: custom_agent 
+    memory_name: saas_memory
   add_memory:
     _type: add_memory
     memory: saas_memory
