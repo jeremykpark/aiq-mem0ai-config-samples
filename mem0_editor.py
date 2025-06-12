@@ -1,5 +1,7 @@
 # SPDX-FileCopyrightText: Copyright (c) 2024-2025, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 # SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: 2025 Jeremy Kesten
+# SPDX-FileComment: Modified by Jeremy Kesten to improve performance and add new features
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,10 +14,10 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
+# This file is a part of the Nvidia AIQ Toolkit project, Mem0 Plugin, and has been modified to support the Mem0 v2 API.
 
 import asyncio
-
-from typing import Union
 
 from mem0 import AsyncMemory, AsyncMemoryClient
 
@@ -28,12 +30,12 @@ class Mem0Editor(MemoryEditor):
     Wrapper class that implements AIQ Toolkit Interfaces for Mem0 Integrations Async.
     """
 
-    def __init__(self, mem0_client: Union[AsyncMemoryClient, AsyncMemory]):
+    def __init__(self, mem0_client: AsyncMemoryClient | AsyncMemory):
         """
         Initialize class with Predefined Mem0 Client.
 
         Args:
-        mem0_client (Union[AsyncMemoryClient, AsyncMemory]): Preinstantiated
+        mem0_client (AsyncMemoryClient | AsyncMemory): Preinstantiated
         AsyncMemoryClient or AsyncMemory object for Mem0.
         """
         self._client = mem0_client

@@ -1,0 +1,79 @@
+general:
+  use_uvloop: true
+  logging:
+    console:
+      _type: console
+      level: WARN
+  tracing:
+    phoenix:
+      _type: phoenix
+      endpoint: http://localhost:6006/v1/traces
+      project: event_reporting_agent
+
+  front_end:
+    _type: fastapi
+
+functions: 
+  event_reporting_agent_function:
+    _type: event_reporting_agent # Changed from event_reporting_agent_function
+    memory_name: saas_memory # Changed from memories
+  add_memory:
+    _type: add_memory
+    memory: saas_memory
+    description: |
+      Add any facts about user preferences to long term memory. Always use this if users mention a preference.
+      The input to this tool should be a JSON object with the following format:
+      {"memory": "The user likes fresh oranges.", "user_id": "user123"}
+      Do not use complex objects with 'conversation' fields.
+  get_memory:
+    _type: get_memory
+    memory: saas_memory
+    description: |
+      Always call this tool before calling any other tools, even if the user does not mention to use it.
+      The question should be about user preferences which will help you format your response.
+      For example: "How does the user like responses formatted?"
+llms:
+  nim_llm:
+    _type: nim
+    model_name: mistralai/mistral-medium-3-instruct
+    temperature: 0.0
+    max_tokens: 4096
+    # if getting errors try increasing
+  ollama_llm:
+    _type: openai
+    model_name: aliafshar/gemma3-it-qat-tools:27b
+    base_url: http://127.0.0.1:11434/v1
+    temperature: 0.0
+    max_tokens: 4096
+    api_key: "ollama"
+
+  # Example OpenAI LLM configuration (commented out by default)
+  # To use OpenAI, uncomment this section and set your API key
+  # openai_report_gen:
+  #   _type: openai_llm
+  #   model_name: gpt-4o
+  #   temperature: 0.0
+  #   max_tokens: 4096
+  #   api_key: your_openai_api_key_here  # Replace with your actual API key or use environment variable
+
+memory:
+  saas_memory:
+    _type: mem0_memory_local_ollama
+    vec_store_url: http://milvus-server:19530  # Change to your actual milvus vector store URL
+    vec_store_embedding_model_dims: 1024 # Updated to match the actual embedding dimensions
+    llm_base_url: http://127.0.0.1:11434 # Change to your actual Ollama LLM URL
+    llm_model: aliafshar/gemma3-it-qat-tools:27b
+    llm_name: ollama_llm  # Specify the LLM to use for memory operations
+    embedder_model: snowflake-arctic-embed2:latest
+    embedder_base_url: http://embed-server:11434 # Change to your actual Ollama embedder LLM URL
+
+workflow:
+  _type: react_agent # Changed from event_reporting_agent
+  tool_names:
+    - event_reporting_agent_function
+    - add_memory
+    - get_memory
+  llm_name: nim_llm # Changed from nim_llm
+  verbose: true
+  retry_parsing_errors: true
+  max_retries: 3

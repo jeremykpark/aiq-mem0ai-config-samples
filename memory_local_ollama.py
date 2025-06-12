@@ -1,6 +1,8 @@
 # SPDX-FileCopyrightText: Copyright (c) 2025, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 # SPDX-License-Identifier: Apache-2.0
-#
+# SPDX-FileCopyrightText: 2025 Jeremy Kesten
+# SPDX-FileComment: Modified by Jeremy Kesten to improve performance and add new features
+
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -26,7 +28,7 @@ class Mem0LocalMemoryClientConfig(MemoryBaseConfig, name="mem0_memory_local_olla
     # change them according to your local setup or override them in your workflow config file
     vec_store_provider: str = "milvus"  # Change to "qdrant" if you prefer that
     vec_store_collection_name: str = "DefaultAIQCollectionNew"
-    vec_store_url: str = "http://localhost:19530"  # Default Milvus URL, change if needed
+    vec_store_url: str = "http://localhost:19530"  # Default Local Milvus URL, change if needed
     vec_store_embedding_model_dims: int = 1024  # Updated to match the actual embedding dimensions
     llm_provider: str = "ollama"
     llm_model: str = "aliafshar/gemma3-it-qat-tools:27b"  # Change to your preferred model
