@@ -40,9 +40,7 @@ More information on using memory in agentiq can be found here:
 
 Nvidia AgentIQ Documentation - https://docs.nvidia.com/agentiq/latest/index.html  
 Mem0 Documentation - https://docs.mem0.ai/overview  
-Nvidia NGC - https://ngc.nvidia.com  
-Nvidia Build - https://build.nvidia.com  
-Quadrant - https://qdrant.tech  
+Milvus Documentation - https://milvus.io/docs  
 Ollama - https://ollama.com  
 
 ## AI Contribution
