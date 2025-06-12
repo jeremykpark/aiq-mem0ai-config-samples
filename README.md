@@ -32,7 +32,7 @@ aiq info components -q "memory"
 
 ## Workflow Config updates
 
-There is a sample config folder that shows how I used the config to setup the file for my local use. Please modify the memory and llm section to point to your local instances. 
+There is a sample config folder that shows how I setup the config file in an AgentIQ workflow for my local use. Please modify the memory and llm section to point to your local instances. 
 
 ## Links
 
